@@ -2,7 +2,7 @@ from pathlib import Path
 from dataclasses import dataclass
 import json
 
-from sbomber.error import SbomberError, raise_error_if
+from sbomber.error import raise_error_if
 
 
 @dataclass
@@ -42,10 +42,10 @@ def parse(file: Path) -> Document:
 
     relationships = []
     for i, r in enumerate(relationship_data):
-        to_id = r.get("spdxElementId")
-        raise_error_if(to_id is None, "Relationship missing spdxElementId key")
-        from_id = r.get("relatedSpdxElement")
-        raise_error_if(from_id is None, "Relationship missing relatedSpdxElement key")
+        to_id = r.get("relatedSpdxElement")
+        raise_error_if(to_id is None, "Relationship missing relatedSpdxElement key")
+        from_id = r.get("spdxElementId")
+        raise_error_if(from_id is None, "Relationship missing spdxElementId key")
         kind = r.get("relationshipType", "IS RELATED TO")
 
         relationship = RelationShip(kind, from_id, to_id)
