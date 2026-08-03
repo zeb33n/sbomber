@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sbomber"
+version = "0.0.0"
+dependencies = [
+    "dag-viewer>=0.2.0",
+    "zensical>=0.0.46",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+include = ["sbomber"]
