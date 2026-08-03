@@ -57,6 +57,6 @@ def parse(file: Path) -> Document:
 
         to_element = elements.get(to_id)
         raise_error_if(to_element is None, f"{to_id} is not in {file}")
-        from_element.in_edge_handles.append(i)
+        to_element.in_edge_handles.append(i)
 
     return Document(elements, relationships)

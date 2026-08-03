@@ -1,4 +1,4 @@
-from sbomber.todot import todot
+from sbomber.output import generate_output
 from sbomber.error import SbomberError
 from sbomber.parser import parse
 
@@ -7,6 +7,7 @@ from pathlib import Path
 
 p = argparse.ArgumentParser(prog="sbomber")
 p.add_argument("filepath", help="filepath to sbom", type=Path)
+p.add_argument("--output", "-o", help="output directory", type=Path, default=Path("output"))
 
 args = p.parse_args()
 
@@ -15,4 +16,4 @@ try:
 except SbomberError as e:
     print(f"ERROR: {e}")
 
-print(todot(document))
+generate_output(document, args.output)
