@@ -10,8 +10,10 @@ def generate_output(document: Document, output_path: Path):
 
     (output_path / "sbom.dot").write_text(document_to_dot(document))
     (output_path / "sbom.md").write_text(document_to_md(document))
-    (output_path / "index.md").write_text("#SBOMBER\n")
+    (output_path / "index.md").write_text("# SBOMBER\n")
 
+def get_label(document: Document, id: str) -> str:
+    return document[id].info.get("name", id)
 
 def document_to_md(document: Document) -> str:
     out = ""
@@ -19,17 +21,22 @@ def document_to_md(document: Document) -> str:
     for e in document.elements.values():
         info = "| key | value |\n| - | - |\n"
         info += "\n".join([f"| {k} | {v} |" for k, v in e.info.items()])
+
+        e_label = get_label(document, e.id)
+        
         parents = "### Parents\n\n" if e.in_edge_handles else ""
         for h in e.in_edge_handles:
             relationship = document.relationships[h]
-            anchor = relationship.from_id.replace(".", "").lower()
-            parents += f"- [{relationship.from_id}](sbom#{anchor}) {relationship.kind} {e.id}\n"
+            from_label = get_label(document, relationship.from_id)
+            anchor = from_label.replace(".", "").lower()
+            parents += f"- [{from_label}](sbom#{anchor}) {relationship.kind} {e_label}\n"
 
         children = "### Children\n\n" if e.out_edge_handles else ""
         for h in e.out_edge_handles:
             relationship = document.relationships[h]
-            anchor = relationship.to_id.replace(".", "").lower()
-            children += f"- {e.id} {relationship.kind} [{relationship.to_id}](sbom#{anchor})\n"
+            to_label = get_label(document, relationship.to_id)
+            anchor = to_label.replace(".", "").lower()
+            children += f"- {e_label} {relationship.kind} [{to_label}](sbom#{anchor})\n"
 
         out += f"""
 ## {e.id}
