@@ -1,6 +1,6 @@
 from pathlib import Path
 import shutil
-from sbomber.parser import Document, Element
+from sbomber.parser import Document
 
 
 def generate_output(document: Document, output_path: Path):
@@ -10,13 +10,27 @@ def generate_output(document: Document, output_path: Path):
 
     (output_path / "sbom.dot").write_text(document_to_dot(document))
     (output_path / "sbom.md").write_text(document_to_md(document))
-    (output_path / "index.md").write_text("# SBOMBER\n")
+    (output_path / "index.md").write_text("# SBOMBER\n[Explore your SBOM](sbom)\n")
+    (output_path / "sbom.css").write_text(create_style_sheet())
+
 
 def get_label(document: Document, id: str) -> str:
-    return document[id].info.get("name", id)
+    return document.elements[id].info.get("name", id)
+
 
 def document_to_md(document: Document) -> str:
-    out = ""
+    out = """---
+hide:
+  - navigation
+  - toc
+---
+
+# SBOM
+
+<div class="sbomber-container" markdown>
+<canvas id="myCanvas" width="200" height="200"style="border:1px solid #333;"></canvas>
+<div class="sbomber-info" markdown>
+"""
 
     for e in document.elements.values():
         info = "| key | value |\n| - | - |\n"
@@ -39,7 +53,7 @@ def document_to_md(document: Document) -> str:
             children += f"- {e_label} {relationship.kind} [{to_label}](sbom#{anchor})\n"
 
         out += f"""
-## {e.id}
+## {e_label.title()}
 
 ### Info
 
@@ -48,7 +62,7 @@ def document_to_md(document: Document) -> str:
 {parents}
 {children}
 """
-    return out
+    return out + "\n</div>\n</div>"
 
 
 def document_to_dot(document: Document) -> str:
@@ -60,3 +74,24 @@ def document_to_dot(document: Document) -> str:
         out += f'    "{r.from_id}" -> "{r.to_id}";\n'
 
     return out + "}\n"
+
+def create_style_sheet() -> str:
+    return """
+.md-grid {
+  max-width: none; 
+}
+
+.sbomber-info {
+  width: 30vw;
+  height: 90vh;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.sbomber-container {
+  display:flex;
+  align-items:flex-start;
+  gap:16px;   
+}
+"""
+    
