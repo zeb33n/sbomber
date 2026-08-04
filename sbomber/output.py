@@ -9,7 +9,7 @@ def generate_output(document: Document, output_path: Path):
     output_path.mkdir(parents=True, exist_ok=False)
 
     (output_path / "sbom.dot").write_text(document_to_dot(document))
-    (output_path / "sbom.md").write_text(document_to_md(document))
+    (output_path / "sbom.md").write_text(document_to_md(document, output_path))
     (output_path / "index.md").write_text("# SBOMBER\n[Explore your SBOM](sbom)\n")
     (output_path / "sbom.css").write_text(create_style_sheet())
 
@@ -18,8 +18,8 @@ def get_label(document: Document, id: str) -> str:
     return document.elements[id].info.get("name", id)
 
 
-def document_to_md(document: Document) -> str:
-    out = """---
+def document_to_md(document: Document, output_path: Path) -> str:
+    out = f"""---
 hide:
   - navigation
   - toc
@@ -28,7 +28,9 @@ hide:
 # SBOM
 
 <div class="sbomber-container" markdown>
-<canvas id="myCanvas" width="200" height="200"style="border:1px solid #333;"></canvas>
+
+{{{{ dag_viewer("900px", "600px", "{output_path / 'sbom.dot'}") }}}}
+
 <div class="sbomber-info" markdown>
 """
 

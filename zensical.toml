@@ -26,6 +26,7 @@ features = [
     "navigation.tracking",
     "search.highlight",
 ]
+use_directory_urls = false
 
 
 [[project.theme.palette]]
@@ -76,5 +77,5 @@ combine_header_slug = true
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
 
-# [project.markdown_extensions.zensical.extensions.macros]
-# module_name = "dag_viewer"
+[project.markdown_extensions.zensical.extensions.macros]
+module_name = "dag_viewer"

@@ -25,14 +25,14 @@ wheels = [
 
 [[package]]
 name = "dag-viewer"
-version = "0.2.0"
+version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "zensical" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d4/52/e6f70ef7bfaeb03554ff6f859a394fa35fcab3c89e23f0805492627fc9cc/dag_viewer-0.2.0.tar.gz", hash = "sha256:fa9d69c1e9c3dff0243f032fb1ecba3a8cf7c87dc30c0634a3042dd8a715c738", size = 48538, upload-time = "2026-07-24T14:31:46.349Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3f/70/7d297c1f9b265535466c82ee777a46fb6742b4790d0da4d9950dc904a9f9/dag_viewer-1.0.0.tar.gz", hash = "sha256:7ae819e6aa9fd0168cb0c9d0f0a999050db47a3c259ab3933776f3f0bef2caf7", size = 48607, upload-time = "2026-08-04T14:49:36.949Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/3c/c2ec5caa94f3db7c2f1b7f1abce4251bc06ebecf9ea5cb018b8a6e63214b/dag_viewer-0.2.0-py3-none-any.whl", hash = "sha256:f2040d2d51f31ef1267402d8ea16f373c1db20a8d60154649be10538c4ed5106", size = 48393, upload-time = "2026-07-24T14:31:44.958Z" },
+    { url = "https://files.pythonhosted.org/packages/01/5c/17d5d8bb416a50ba2e732978e3042714a63d7d787e97ba8b3f81a6703022/dag_viewer-1.0.0-py3-none-any.whl", hash = "sha256:e0695d465b74775d69c2d37420b05012c9f2dd2f4d7b4575e9d1f962250b0588", size = 48454, upload-time = "2026-08-04T14:49:35.517Z" },
 ]
 
 [[package]]
@@ -227,7 +227,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dag-viewer", specifier = ">=0.2.0" },
+    { name = "dag-viewer", specifier = ">=1.0.0" },
     { name = "zensical", specifier = ">=0.0.46" },
 ]
 
