@@ -45,14 +45,14 @@ hide:
             relationship = document.relationships[h]
             from_label = get_label(document, relationship.from_id)
             anchor = from_label.replace(".", "").lower()
-            parents += f"- [{from_label}](sbom#{anchor}) {relationship.kind} {e_label}\n"
+            parents += f"- [{from_label}](sbom.md#{anchor}) {relationship.kind} {e_label}\n"
 
         children = "### Children\n\n" if e.out_edge_handles else ""
         for h in e.out_edge_handles:
             relationship = document.relationships[h]
             to_label = get_label(document, relationship.to_id)
             anchor = to_label.replace(".", "").lower()
-            children += f"- {e_label} {relationship.kind} [{to_label}](sbom#{anchor})\n"
+            children += f"- {e_label} {relationship.kind} [{to_label}](sbom.md#{anchor})\n"
 
         out += f"""
 ## {e_label.title()}
@@ -70,7 +70,9 @@ hide:
 def document_to_dot(document: Document) -> str:
     out = "digraph {\n"
     for e in document.elements.values():
-        out += f'    "{e.id}";\n'
+        label = get_label(document, e.id)
+        anchor = label.replace(".", "").lower()
+        out += f'    "{e.id}" [dv_label="{label}", dv_link="sbom.html#{anchor}"];\n'
 
     for r in document.relationships:
         out += f'    "{r.from_id}" -> "{r.to_id}";\n'
@@ -85,7 +87,7 @@ def create_style_sheet() -> str:
 
 .sbomber-info {
   width: 30vw;
-  height: 90vh;
+  height: 600px;
   overflow-y: auto;
   min-height: 0;
 }

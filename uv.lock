@@ -25,15 +25,14 @@ wheels = [
 
 [[package]]
 name = "dag-viewer"
-version = "1.0.0"
-source = { registry = "https://pypi.org/simple" }
+version = "1.1.0"
+source = { directory = "/home/zeb/projects/dag-viewer" }
 dependencies = [
     { name = "zensical" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3f/70/7d297c1f9b265535466c82ee777a46fb6742b4790d0da4d9950dc904a9f9/dag_viewer-1.0.0.tar.gz", hash = "sha256:7ae819e6aa9fd0168cb0c9d0f0a999050db47a3c259ab3933776f3f0bef2caf7", size = 48607, upload-time = "2026-08-04T14:49:36.949Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/01/5c/17d5d8bb416a50ba2e732978e3042714a63d7d787e97ba8b3f81a6703022/dag_viewer-1.0.0-py3-none-any.whl", hash = "sha256:e0695d465b74775d69c2d37420b05012c9f2dd2f4d7b4575e9d1f962250b0588", size = 48454, upload-time = "2026-08-04T14:49:35.517Z" },
-]
+
+[package.metadata]
+requires-dist = [{ name = "zensical", specifier = ">=0.0.46" }]
 
 [[package]]
 name = "deepmerge"
@@ -227,7 +226,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dag-viewer", specifier = ">=1.0.0" },
+    { name = "dag-viewer", directory = "/home/zeb/projects/dag-viewer" },
     { name = "zensical", specifier = ">=0.0.46" },
 ]
 
