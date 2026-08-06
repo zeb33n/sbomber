@@ -11,7 +11,6 @@ def generate_output(document: Document, output_path: Path):
     (output_path / "sbom.dot").write_text(document_to_dot(document))
     (output_path / "sbom.md").write_text(document_to_md(document, output_path))
     (output_path / "index.md").write_text("# SBOMBER\n[Explore your SBOM](sbom.md)\n")
-    (output_path / "sbom.css").write_text(create_style_sheet())
 
 
 def get_label(document: Document, id: str) -> str:
@@ -26,7 +25,9 @@ hide:
 ---
 
 # SBOM
-
+<style>
+{create_style_sheet()}
+</style>
 <div class="sbomber-container" markdown>
 
 {{{{ dag_viewer("90vw", "600px", "{output_path / 'sbom.dot'}") }}}}

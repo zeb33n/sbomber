@@ -8,7 +8,6 @@ site_description = "An SBOM Explorer"
 site_author = "Zeb Bond"
 copyright = "Copyright &copy; 2026 The authors"
 language = "en"
-extra_css = ["sbom.css"]
 features = [
     "announce.dismiss",
     "content.code.annotate",

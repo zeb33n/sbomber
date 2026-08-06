@@ -83,12 +83,12 @@ def main():
                 shutil.rmtree(p)
             shutil.copytree(zensical_site_path, p)
 
-        # serve the site
-        if args.serve:
-            Handler = partial(SimpleHTTPRequestHandler, directory=args.output)
-            with TCPServer(("", args.serve), Handler) as httpd:
-                print(f"Serving on http://localhost:{args.serve}")
-                httpd.serve_forever()
+    # serve the site
+    if args.serve:
+        Handler = partial(SimpleHTTPRequestHandler, directory=args.output)
+        with TCPServer(("", args.serve), Handler) as httpd:
+            print(f"Serving on http://localhost:{args.serve}")
+            httpd.serve_forever()
 
 
 if __name__ == "__main__":
