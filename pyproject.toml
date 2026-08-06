@@ -13,5 +13,8 @@ license = "MIT"
 license-files = ["LICEN[CS]E*"]
 requires-python = ">=3.11"
 
+[project.scripts]
+bst-docs = "sbomber.__main__:main"
+
 [tool.setuptools.packages.find]
 include = ["sbomber"]

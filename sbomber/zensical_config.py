@@ -1,11 +1,12 @@
+from pathlib import Path
+
+def generate_config(file: Path):
+    config = """
 [project]
-docs_dir = "output"
 site_name = "SBOMBER"
 site_description = "An SBOM Explorer"
 site_author = "Zeb Bond"
-copyright = """
-Copyright &copy; 2026 The authors
-"""
+copyright = "Copyright &copy; 2026 The authors"
 language = "en"
 extra_css = ["sbom.css"]
 features = [
@@ -79,3 +80,6 @@ custom_checkbox = true
 
 [project.markdown_extensions.zensical.extensions.macros]
 module_name = "dag_viewer"
+"""
+    file.write_text(config)
+    
