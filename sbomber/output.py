@@ -30,7 +30,7 @@ hide:
 </style>
 <div class="sbomber-container" markdown>
 
-{{{{ dag_viewer("90vw", "600px", "{output_path / 'sbom.dot'}") }}}}
+{{{{ dag_viewer("90vw", "70vh", "{output_path / 'sbom.dot'}") }}}}
 
 <div class="sbomber-info" markdown>
 """
@@ -88,7 +88,7 @@ def create_style_sheet() -> str:
 
 .sbomber-info {
   width: 30vw;
-  height: 600px;
+  height: 70vh;
   overflow-y: auto;
   min-height: 0;
 }
