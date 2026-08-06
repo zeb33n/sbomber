@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "sbomber"
 version = "0.0.0"
 dependencies = [
-    "dag-viewer>=1.0.0",
+    "dag-viewer>=1.1.1",
     "zensical>=0.0.46",
 ]
 license = "MIT"
